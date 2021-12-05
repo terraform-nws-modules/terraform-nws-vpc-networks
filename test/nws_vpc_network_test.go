@@ -15,7 +15,7 @@ func TestVpcPrivateExample(t *testing.T) {
 	testCases := []testCaseT{
 		{
 			"VPC with private subnetworks",
-			[]string{genName()},
+			[]string{genSubnetPrivateName()},
 			[]string{"10.0.1.0/30"},
 			[]string{},
 			[]string{},

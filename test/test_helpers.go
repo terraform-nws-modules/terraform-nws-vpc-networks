@@ -2,7 +2,6 @@ package test
 
 import (
 	"fmt"
-	"strings"
 	"testing"
 	"time"
 
@@ -56,13 +55,10 @@ func validate(t *testing.T, opts *terraform.Options) {
 	// assert.ElementsMatch(t, name, actName)
 }
 
-// Validation helpers
-func trimBrackets(s string) string {
-	str0 := strings.TrimLeft(s, "[")
-	str1 := strings.TrimRight(str0, "]")
-	return str1
+func genSubnetPrivateName() string {
+	return fmt.Sprintf("net-private-%s", random.UniqueId())
 }
 
-func genName() string {
-	return fmt.Sprintf("vpc-test-%s", random.UniqueId())
+func genSubnetPublicName() string {
+	return fmt.Sprintf("net-public-%s", random.UniqueId())
 }
