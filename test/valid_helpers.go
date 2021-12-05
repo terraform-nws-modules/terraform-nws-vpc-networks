@@ -28,17 +28,25 @@ func validatePrivate(t *testing.T, opts *terraform.Options, cfg testCaseT) {
 func validatePublic(t *testing.T, opts *terraform.Options, cfg testCaseT) {
 	pubIP := terraform.Output(t, opts, "vpc_public_ip")
 	domain := terraform.Output(t, opts, "domain")
-	tmpPubSubnets := terraform.Output(t, opts, "subnet_private_id")
+	tmpPubSubnets := terraform.Output(t, opts, "subnet_public_id")
+	tmpAclIDs := terraform.Output(t, opts, "subnet_public_acl_id")
+	tmpAclRuleIDs := terraform.Output(t, opts, "subnet_public_acl_rule_id")
 
 	pubSubnets := strings.Fields(trimBrackets(tmpPubSubnets))
+	aclIDs := strings.Fields(trimBrackets(tmpAclIDs))
+	aclRuleIDs := strings.Fields(trimBrackets(tmpAclRuleIDs))
 
 	fmt.Println(">>>>> Pub IP: ", pubIP)
 	fmt.Println(">>>>> Domain: ", domain)
-	fmt.Println(">>>>> Private subnets: ", pubSubnets)
+	fmt.Println(">>>>> Public subnets: ", pubSubnets)
+	fmt.Println(">>>>> ACL IDs: ", aclIDs)
+	fmt.Println(">>>>> ACL Rule IDs: ", aclRuleIDs)
 
 	assert.NotEmpty(t, pubIP)
 	assert.Equal(t, cfg.domain, domain)
-	assert.Equal(t, len(cfg.subnetPrivCidr), len(pubSubnets))
+	assert.Equal(t, len(cfg.subnetPubCidr), len(pubSubnets))
+	assert.Equal(t, len(cfg.subnetPubCidr), len(aclIDs))
+	assert.Equal(t, len(cfg.subnetPubCidr), len(aclRuleIDs))
 }
 
 func trimBrackets(s string) string {

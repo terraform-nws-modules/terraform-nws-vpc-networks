@@ -19,10 +19,10 @@ func TestVpcPublicExample(t *testing.T) {
 			vpcName,
 			vpcCidr,
 			domain,
+			[]string{},
+			[]string{},
 			[]string{genSubnetPublicName()},
 			[]string{"10.0.1.0/30"},
-			[]string{},
-			[]string{},
 		},
 	}
 	for _, testCase := range testCases {
