@@ -27,7 +27,7 @@ func TestVpcPrivateExample(t *testing.T) {
 		testCase := testCase
 
 		// generate a random service path for each parallel test
-		servicePath := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/vpc-private")
+		servicePath := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/vpc-all")
 
 		// fork a parallel test with all stages
 		t.Run(testCase.testName, func(t *testing.T) {

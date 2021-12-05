@@ -15,7 +15,6 @@ variable "domain" {
   description = "Your VPC network domain"
   type        = string
 }
-
 # ---------------------------------------------------------------------------------------------------------------------
 # Private subnets settings
 # ---------------------------------------------------------------------------------------------------------------------
@@ -35,7 +34,7 @@ variable "subnet_private_cidr" {
 # Public subnets settings
 # ---------------------------------------------------------------------------------------------------------------------
 variable "subnet_public_name" {
-  description = "Your public subnet name"
+  description = "Your public subnets name"
   type        = list(string)
   default     = null
 }
