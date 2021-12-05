@@ -45,8 +45,10 @@ func validatePublic(t *testing.T, opts *terraform.Options, cfg testCaseT) {
 	assert.NotEmpty(t, pubIP)
 	assert.Equal(t, cfg.domain, domain)
 	assert.Equal(t, len(cfg.subnetPubCidr), len(pubSubnets))
-	assert.Equal(t, len(cfg.subnetPubCidr), len(aclIDs))
-	assert.Equal(t, len(cfg.subnetPubCidr), len(aclRuleIDs))
+
+	// ACS creates a single ID for a list of CIDR and Ports
+	assert.Equal(t, 1, len(aclIDs))
+	assert.Equal(t, 1, len(aclRuleIDs))
 }
 
 func validateFull(t *testing.T, opts *terraform.Options, cfg testCaseT) {
@@ -76,8 +78,10 @@ func validateFull(t *testing.T, opts *terraform.Options, cfg testCaseT) {
 	// Subnets checkers
 	assert.Equal(t, len(cfg.subnetPubCidr), len(privSubnets))
 	assert.Equal(t, len(cfg.subnetPubCidr), len(pubSubnets))
-	assert.Equal(t, len(cfg.aclCIDRList), len(aclIDs))
-	assert.Equal(t, len(cfg.aclPortList), len(aclRuleIDs))
+
+	// ACS creates a single ID for a list of CIDR and Ports
+	assert.Equal(t, 1, len(aclIDs))
+	assert.Equal(t, 1, len(aclRuleIDs))
 }
 
 func trimBrackets(s string) string {
