@@ -23,6 +23,9 @@ func TestVpcPrivateExample(t *testing.T) {
 			[]string{"10.0.1.0/30"},
 			[]string{},
 			[]string{},
+			alcName,
+			[]string{},
+			[]string{},
 		},
 	}
 	for _, testCase := range testCases {

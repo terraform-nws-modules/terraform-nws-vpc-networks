@@ -10,6 +10,7 @@ const (
 	vpcName = "vpc-test"
 	vpcCidr = "10.0.1.0/24"
 	domain  = "my.local"
+	alcName = "my-acl-public"
 )
 
 type testCaseT struct {
@@ -21,6 +22,9 @@ type testCaseT struct {
 	subnetPrivCidr []string
 	subnetPubName  []string
 	subnetPubCidr  []string
+	aclName        string
+	aclCIDRList    []string
+	aclPortList    []string
 }
 
 func genSubnetPrivateName() string {

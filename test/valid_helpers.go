@@ -76,8 +76,8 @@ func validateFull(t *testing.T, opts *terraform.Options, cfg testCaseT) {
 	// Subnets checkers
 	assert.Equal(t, len(cfg.subnetPubCidr), len(privSubnets))
 	assert.Equal(t, len(cfg.subnetPubCidr), len(pubSubnets))
-	assert.Equal(t, len(cfg.subnetPubCidr), len(aclIDs))
-	assert.Equal(t, len(cfg.subnetPubCidr), len(aclRuleIDs))
+	assert.Equal(t, len(cfg.aclCIDRList), len(aclIDs))
+	assert.Equal(t, len(cfg.aclPortList), len(aclRuleIDs))
 }
 
 func trimBrackets(s string) string {
