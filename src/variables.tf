@@ -1,19 +1,25 @@
 # ---------------------------------------------------------------------------------------------------------------------
-# VPC settings
+# REQUIRED PARAMETERS
+# You must provide a value for each of these parameters.
+# ---------------------------------------------------------------------------------------------------------------------
+variable "vpc_cidr" {
+  description = "Your VPC full CIDR"
+  type        = string
+}
+# ---------------------------------------------------------------------------------------------------------------------
+# OPTIONAL PARAMETERS
+# These parameters have reasonable defaults.
 # ---------------------------------------------------------------------------------------------------------------------
 variable "vpc_name" {
   description = "Your VPC name"
   type        = string
-}
-
-variable "vpc_cidr" {
-  description = "Your VPC full CIDR"
-  type        = string
+  default     = "vpc-mycompany"
 }
 
 variable "domain" {
   description = "Your VPC network domain"
   type        = string
+  default     = "my.local"
 }
 
 # ---------------------------------------------------------------------------------------------------------------------

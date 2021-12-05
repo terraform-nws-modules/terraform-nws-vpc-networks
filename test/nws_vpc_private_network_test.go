@@ -7,7 +7,7 @@ import (
 	test_structure "github.com/gruntwork-io/terratest/modules/test-structure"
 )
 
-func TestVpcAllExample(t *testing.T) {
+func TestVpcPrivateExample(t *testing.T) {
 	t.Parallel()
 
 	stage := test_structure.RunTestStage
@@ -27,7 +27,7 @@ func TestVpcAllExample(t *testing.T) {
 		testCase := testCase
 
 		// generate a random service path for each parallel test
-		servicePath := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/vpc-all")
+		servicePath := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/vpc-private")
 
 		// fork a parallel test with all stages
 		t.Run(testCase.testName, func(t *testing.T) {

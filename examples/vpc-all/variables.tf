@@ -1,19 +1,21 @@
 # ---------------------------------------------------------------------------------------------------------------------
 # VPC settings
 # ---------------------------------------------------------------------------------------------------------------------
-variable "vpc_name" {
-  description = "Your VPC name"
-  type        = string
-}
-
 variable "vpc_cidr" {
   description = "Your VPC full CIDR"
   type        = string
 }
 
+variable "vpc_name" {
+  description = "Your VPC name"
+  type        = string
+  default     = "vpc-mycorp"
+}
+
 variable "domain" {
   description = "Your VPC network domain"
   type        = string
+  default     = "test.local"
 }
 # ---------------------------------------------------------------------------------------------------------------------
 # Private subnets settings
