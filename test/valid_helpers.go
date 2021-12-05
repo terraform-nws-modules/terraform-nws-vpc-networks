@@ -29,12 +29,12 @@ func validatePublic(t *testing.T, opts *terraform.Options, cfg testCaseT) {
 	pubIP := terraform.Output(t, opts, "vpc_public_ip")
 	domain := terraform.Output(t, opts, "domain")
 	tmpPubSubnets := terraform.Output(t, opts, "subnet_public_id")
-	tmpAclIDs := terraform.Output(t, opts, "subnet_public_acl_id")
-	tmpAclRuleIDs := terraform.Output(t, opts, "subnet_public_acl_rule_id")
+	tmpACLIDs := terraform.Output(t, opts, "subnet_public_acl_id")
+	tmpACLRuleIDs := terraform.Output(t, opts, "subnet_public_acl_rule_id")
 
 	pubSubnets := strings.Fields(trimBrackets(tmpPubSubnets))
-	aclIDs := strings.Fields(trimBrackets(tmpAclIDs))
-	aclRuleIDs := strings.Fields(trimBrackets(tmpAclRuleIDs))
+	aclIDs := strings.Fields(trimBrackets(tmpACLIDs))
+	aclRuleIDs := strings.Fields(trimBrackets(tmpACLRuleIDs))
 
 	fmt.Println(">>>>> Pub IP: ", pubIP)
 	fmt.Println(">>>>> Domain: ", domain)
