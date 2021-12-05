@@ -14,6 +14,9 @@ const (
 
 type testCaseT struct {
 	testName       string
+	vpcName        string
+	vpcCidr        string
+	domain         string
 	subnetPrivName []string
 	subnetPrivCidr []string
 	subnetPubName  []string

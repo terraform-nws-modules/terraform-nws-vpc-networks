@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
+	"github.com/stretchr/testify/assert"
 )
 
 func config(t *testing.T, cfg testCaseT, servicePath string) *terraform.Options {
@@ -38,20 +39,15 @@ func getOutputs(t *testing.T, opts *terraform.Options) (pubIP, domain, privSubne
 	return
 }
 
-func validate(t *testing.T, opts *terraform.Options) {
-	// pubIP := terraform.Output(t, opts, "vpc_public_ip")
-	// domain := terraform.Output(t, opts, "domain")
-	// privSubnets := terraform.Output(t, opts, "subnet_private_id")
-	// privSubnets := terraform.Output(t, opts, "subnet_private_id")
-	// pubIP, domain, privSubnets, pubSubnets := getOutputs()
-	pubIP, _, _, _ := getOutputs(t, opts)
+func validatePrivate(t *testing.T, opts *terraform.Options, cfg testCaseT) {
+	pubIP, domain, _, _ := getOutputs(t, opts)
 
 	fmt.Println(">>>>> Pub IP: ", pubIP)
 
 	// actName := strings.Fields(trimBrackets(outName))
 	// actID := strings.Fields(trimBrackets(outID))
 
-	// // assert.Equal(t, len(name), len(actID))
+	assert.Equal(t, cfg.domain, domain)
 	// assert.ElementsMatch(t, name, actName)
 }
 

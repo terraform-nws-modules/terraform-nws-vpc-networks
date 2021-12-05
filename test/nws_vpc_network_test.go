@@ -15,6 +15,9 @@ func TestVpcAllExample(t *testing.T) {
 	testCases := []testCaseT{
 		{
 			"VPC with private subnetworks",
+			vpcName,
+			vpcCidr,
+			domain,
 			[]string{genSubnetPrivateName()},
 			[]string{"10.0.1.0/30"},
 			[]string{},
@@ -45,7 +48,7 @@ func TestVpcAllExample(t *testing.T) {
 
 			stage(t, "validate", func() {
 				opts := test_structure.LoadTerraformOptions(t, servicePath)
-				validate(t, opts)
+				validatePrivate(t, opts, testCase)
 			})
 		})
 	}
