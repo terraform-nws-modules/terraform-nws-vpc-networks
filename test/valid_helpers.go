@@ -5,23 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
-
-const (
-	vpcName = "vpc-test"
-	vpcCidr = "10.0.1.0/24"
-	domain  = "my.local"
-)
-
-type testCaseT struct {
-	testName       string
-	subnetPrivName []string
-	subnetPrivCidr []string
-	subnetPubName  []string
-	subnetPubCidr  []string
-}
 
 func config(t *testing.T, cfg testCaseT, servicePath string) *terraform.Options {
 
@@ -43,37 +28,6 @@ func config(t *testing.T, cfg testCaseT, servicePath string) *terraform.Options 
 	})
 }
 
-func buildPrivateConfig(cfg testCaseT) map[string]interface{} {
-	conf := map[string]interface{}{
-		"vpc_name":            vpcName,
-		"vpc_cidr":            vpcCidr,
-		"domain":              domain,
-		"subnet_private_name": cfg.subnetPrivName,
-		"subnet_private_cidr": cfg.subnetPrivCidr,
-	}
-	return conf
-}
-
-func buildPublicConfig(cfg testCaseT) map[string]interface{} {
-	conf := map[string]interface{}{
-		"vpc_cidr":           vpcCidr,
-		"subnet_public_name": cfg.subnetPubName,
-		"subnet_public_cidr": cfg.subnetPubCidr,
-	}
-	return conf
-}
-
-func buildFullConfig(cfg testCaseT) map[string]interface{} {
-	conf := map[string]interface{}{
-		"vpc_cidr":            vpcCidr,
-		"subnet_private_name": cfg.subnetPrivName,
-		"subnet_private_cidr": cfg.subnetPrivCidr,
-		"subnet_public_name":  cfg.subnetPubName,
-		"subnet_public_cidr":  cfg.subnetPubCidr,
-	}
-	return conf
-}
-
 // validates Terraform output versus expected
 func getOutputs(t *testing.T, opts *terraform.Options) (pubIP, domain, privSubnets, pubSubnets string) {
 	pubIP = terraform.Output(t, opts, "vpc_public_ip")
@@ -83,6 +37,7 @@ func getOutputs(t *testing.T, opts *terraform.Options) (pubIP, domain, privSubne
 
 	return
 }
+
 func validate(t *testing.T, opts *terraform.Options) {
 	// pubIP := terraform.Output(t, opts, "vpc_public_ip")
 	// domain := terraform.Output(t, opts, "domain")
@@ -98,14 +53,6 @@ func validate(t *testing.T, opts *terraform.Options) {
 
 	// // assert.Equal(t, len(name), len(actID))
 	// assert.ElementsMatch(t, name, actName)
-}
-
-func genSubnetPrivateName() string {
-	return fmt.Sprintf("net-private-%s", random.UniqueId())
-}
-
-func genSubnetPublicName() string {
-	return fmt.Sprintf("net-public-%s", random.UniqueId())
 }
 
 // func configEnvInputs(kind string){
