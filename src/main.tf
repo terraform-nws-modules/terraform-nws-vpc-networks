@@ -17,6 +17,7 @@ module "vpc" {
   domain = var.domain
 }
 
+// Private subnets are accessible only thru VPN
 module "subnets_private" {
   source = "github.com/terraform-nws-modules/terraform-nws-subnet/src"
 
@@ -27,6 +28,7 @@ module "subnets_private" {
   public = "false"
 }
 
+// Public subnets may have ACLs to allow in/out traffic from specified ports
 module "subnets_public" {
   source = "github.com/terraform-nws-modules/terraform-nws-subnet/src"
 
@@ -35,4 +37,10 @@ module "subnets_public" {
   domain = var.domain
   vpc_id = module.vpc.vpc_id
   public = "true"
+
+  // ACL setup
+  acl_name              = var.acl_name
+  acl_allowed_cidr_list = var.acl_allowed_cidr_list
+  acl_allowed_port_list = var.acl_allowed_port_list
+
 }

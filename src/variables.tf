@@ -51,3 +51,21 @@ variable "subnet_public_cidr" {
   type        = list(string)
   default     = null
 }
+
+variable "acl_name" {
+  description = "Your ACL name"
+  type        = string
+  default     = "my-acl-public"
+}
+
+variable "acl_allowed_cidr_list" {
+  description = "CIDR list for allowed ingress traffic. Allow all ingress traffic by default"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
+
+variable "acl_allowed_port_list" {
+  description = "Port list for allowed ingress traffic"
+  type        = list(string)
+  default     = ["80", "30000-30001"]
+}
