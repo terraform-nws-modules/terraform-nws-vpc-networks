@@ -36,7 +36,7 @@ func TestVpcAllExample(t *testing.T) {
 		t.Run(testCase.testName, func(t *testing.T) {
 			t.Parallel()
 			stage(t, "deploy", func() {
-				opts := config(t, testCase, servicePath)
+				opts := configPrivate(t, testCase, servicePath)
 				test_structure.SaveTerraformOptions(t, servicePath, opts)
 				terraform.InitAndApply(t, opts)
 			})

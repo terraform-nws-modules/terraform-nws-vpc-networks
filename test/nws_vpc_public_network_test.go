@@ -8,18 +8,18 @@ import (
 	test_structure "github.com/gruntwork-io/terratest/modules/test-structure"
 )
 
-func TestVpcPrivateExample(t *testing.T) {
+func TestVpcPublicExample(t *testing.T) {
 	t.Parallel()
 
 	stage := test_structure.RunTestStage
 
 	testCases := []testCaseT{
 		{
-			"VPC with private subnetworks",
+			"VPC with public subnetworks",
 			vpcName,
 			vpcCidr,
 			domain,
-			[]string{genSubnetPrivateName()},
+			[]string{genSubnetPublicName()},
 			[]string{"10.0.1.0/30"},
 			[]string{},
 			[]string{},
@@ -31,13 +31,13 @@ func TestVpcPrivateExample(t *testing.T) {
 		testCase := testCase
 
 		// generate a random service path for each parallel test
-		servicePath := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/vpc-private")
+		servicePath := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/vpc-public")
 
 		// fork a parallel test with all stages
 		t.Run(testCase.testName, func(t *testing.T) {
 			t.Parallel()
 			stage(t, "deploy", func() {
-				opts := configPrivate(t, testCase, servicePath)
+				opts := configPublic(t, testCase, servicePath)
 				test_structure.SaveTerraformOptions(t, servicePath, opts)
 				terraform.InitAndApply(t, opts)
 			})
@@ -49,19 +49,19 @@ func TestVpcPrivateExample(t *testing.T) {
 
 			stage(t, "validate", func() {
 				opts := test_structure.LoadTerraformOptions(t, servicePath)
-				validatePrivate(t, opts, testCase)
+				validatePublic(t, opts, testCase)
 			})
 		})
 	}
 }
 
-func configPrivate(t *testing.T, cfg testCaseT, servicePath string) *terraform.Options {
+func configPublic(t *testing.T, cfg testCaseT, servicePath string) *terraform.Options {
 
 	return terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: servicePath,
 
 		// Variables to pass to our Terraform code using -var options
-		Vars: buildPrivateConfig(cfg),
+		Vars: buildPublicConfig(cfg),
 		// Add retries to eliminate trasilent errors
 		MaxRetries:         3,
 		TimeBetweenRetries: 5 * time.Second,
