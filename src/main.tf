@@ -27,12 +27,12 @@ module "subnets_private" {
   public = "false"
 }
 
-# module "subnets-public" {
-#   source = "github.com/terraform-nws-modules/terraform-nws-subnet/src"
+module "subnets_public" {
+  source = "github.com/terraform-nws-modules/terraform-nws-subnet/src"
 
-#   name   = var.subnet_name
-#   cidr   = var.subnet_cidr
-#   domain = var.domain
-#   vpc_id = module.vpc.vpc_id
-#   public = "true"
-# }
+  name   = var.subnet_public_name
+  cidr   = var.subnet_public_cidr
+  domain = var.domain
+  vpc_id = module.vpc.vpc_id
+  public = "true"
+}

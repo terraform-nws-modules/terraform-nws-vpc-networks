@@ -16,19 +16,27 @@ output "domain" {
   value       = var.domain
 }
 # ---------------------------------------------------------------------------------------------------------------------
-# Private subnets settings
+# Private subnets outputs
 # ---------------------------------------------------------------------------------------------------------------------
 output "subnet_private_id" {
-  description = "UUID of the new subnet"
+  description = "UUID list of your private subnets"
   value       = module.subnets_private.subnet_id
 }
 
-# output "subnet_acl_id" {
-#   description = "ACL id for this subnet"
-#   value       = module.subnet_private.subnet_acl_id
-# }
+# ---------------------------------------------------------------------------------------------------------------------
+# Public subnets outputs
+# ---------------------------------------------------------------------------------------------------------------------
+output "subnet_public_id" {
+  description = "UUID list of your public subnets"
+  value       = module.subnets_public.subnet_id
+}
 
-# output "subnet_acl_rule_id" {
-#   description = "ACL rule id for this subnet"
-#   value       = module.subnet_private.subnet_acl_rule_id
-# }
+output "subnet_public_acl_id" {
+  description = "ACL ID list for your public subnets"
+  value       = module.subnets_public.subnet_acl_id
+}
+
+output "subnet_public_acl_rule_id" {
+  description = "ACL Rule ID list for your public subnets"
+  value       = module.subnets_public.subnet_acl_rule_id
+}

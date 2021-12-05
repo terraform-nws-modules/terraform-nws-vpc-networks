@@ -22,9 +22,26 @@ variable "domain" {
 variable "subnet_private_name" {
   description = "Your private subnet name"
   type        = list(string)
+  default     = null
 }
 
 variable "subnet_private_cidr" {
-  description = "Your subnets CIDR"
+  description = "Your private subnets CIDR"
   type        = list(string)
+  default     = null
+}
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Public subnets settings
+# ---------------------------------------------------------------------------------------------------------------------
+variable "subnet_public_name" {
+  description = "Your public subnet name"
+  type        = list(string)
+  default     = null
+}
+
+variable "subnet_public_cidr" {
+  description = "Your public subnets CIDR"
+  type        = list(string)
+  default     = null
 }

@@ -16,7 +16,7 @@ output "domain" {
   value       = module.vpc_networks.domain
 }
 # ---------------------------------------------------------------------------------------------------------------------
-# Private subnets settings
+# Private subnets outputs
 # ---------------------------------------------------------------------------------------------------------------------
 output "subnet_private_id" {
   description = "UUID of the new subnet"
