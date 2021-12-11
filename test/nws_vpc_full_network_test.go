@@ -22,7 +22,7 @@ func TestVpcAllExample(t *testing.T) {
 			[]string{genSubnetPrivateName(), genSubnetPrivateName()},
 			[]string{"10.0.1.0/30", "10.0.1.10/30"},
 			[]string{genSubnetPublicName(), genSubnetPublicName()},
-			[]string{"10.0.1.20/30", "10.0.1.30/30"},
+			[]string{"10.0.1.30/30", "10.0.1.30/30"},
 			alcName,
 			[]string{"[0.0.0.0/0"},
 			[]string{"80", "5000-5005", "31000-31002"},
